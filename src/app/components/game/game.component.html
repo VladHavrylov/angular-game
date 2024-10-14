@@ -1,0 +1,34 @@
+<div class="game-container">
+  <div class="controls">
+    <mat-form-field class="timer-field">
+      <input [(ngModel)]="timeLimit" matInput placeholder="Input interval in milisec" value="">
+    </mat-form-field>
+    <button mat-stroked-button (click)="startGame()" [disabled]="gameActive" class="start-game-button">Почати</button>
+  </div>
+
+  <div class="score">
+    <div class="score-text-container">
+      <span class="gradient-text-player">Гравець</span>
+      <span class="gradient-text-player">{{playerScore}}</span>
+    </div>
+
+    <div class="score-text-container">
+      <span>VS</span>
+    </div>
+    <div class="score-text-container">
+      <span class="gradient-text-computer">Комп'ютер</span>
+      <span class="gradient-text-computer">{{computerScore}}</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div *ngFor="let row of grid; let rowIndex = index" class="row">
+      <app-game-item *ngFor="let cell of row; let colIndex = index"
+                [color]="cell.color"
+                [id]="cell.id"
+                (cellClick)="onCellClick(rowIndex, colIndex)">
+      </app-game-item>
+    </div>
+  </div>
+</div>
+
